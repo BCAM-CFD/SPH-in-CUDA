@@ -1,0 +1,63 @@
+#!/bin/bash
+################################################
+## Configuración del trabajo ##
+################################################
+## Nombre del trabajo
+#PBS -N prueba
+## Nombre del log de salida
+#PBS -o prueba.out
+## Nombre del log de error
+#PBS -e prueba.err
+## Especifica a que cola se mandará el trabajo
+#PBS -q beta
+## Reserva de recursos
+## select = número de nodos (se recomienda usar 1)
+## ncpus = número total de hilos a usar
+## mpiprocs = número de hilos de MPI en paralelo (se recomienda usar ncpus)
+## ompthreads = número de hilos de OMP en paralelo (se recomienda usar 1)
+## Debe cumplirse la relación ncpus = mpiprocs * ompthreads
+## diskspace = espacio en disco necesario (se especifica en mb, gb, tb, etc.
+## Si se requieren menos de 100 GB, se usará un disco SSD de alta
+## velocidad, si se requiere más espacio, se usará un disco HDD de
+## alta capacidad.
+#PBS -l select=1:ncpus=1:mpiprocs=1:ompthreads=1:host=c-1-3:diskspace=50gb
+
+## Asigna el directorio temporal de trabajo en función del espacio requerido
+source /usr/local/jobs/scratch.sh
+################################################
+## Copia de archivos al nodo de trabajo ##
+################################################
+## Copia los ficheros necesarios al directorio temporal
+# cp $PBS_O_WORKDIR/f1 $TMPDIR
+# cp $PBS_O_WORKDIR/f2 $TMPDIR
+# cp -R $PBS_O_WORKDIR/d1 $TMPDIR
+cp $PBS_O_WORKDIR/input $TMPDIR
+cp $PBS_O_WORKDIR/SDPD_program $TMPDIR
+# Ir al directorio temporal del nodo de trabajo
+echo $TMPDIR $PBS_O_WORKDIR/directorio_temporal
+cd $TMPDIR
+################################################
+## Ejecución del trabajo ##
+################################################
+## Cargar los módulos necesarios
+## module unload MODULO_NO_DESEADO
+## module load MODULO_DESEADO
+module load cuda/12.0
+## Trabajo en serie
+## ./MiPrograma
+## Trabajo en paralelo con OpenMP
+## ./OMPTest
+## Trabajo en paralelo con MPI
+## El número de hilos debe coincidir con la variable mpiprocs
+./SDPD_program
+
+################################################
+## Copia de archivos al $home del usuario ##
+################################################
+## Copia todos los archivos generados en el Directorio temporal
+## al directorio desde el que se envió el trabajo
+# OUTDIR=$PBS_O_WORKDIR/$PBS_JOBID
+# mkdir -p $OUTDIR
+#cp -r * $OUTDIR
+OUTDIR=$PBS_O_WORKDIR
+cp *.dat $OUTDIR
