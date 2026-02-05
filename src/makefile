@@ -1,5 +1,5 @@
 NVCC = nvcc
-CFLAGS = -O3 --std=c++14 -arch=sm_61 --relocatable-device-code=true sm_86 depends on your GPU
+CFLAGS = -O3 --std=c++14 -arch=sm_61 --relocatable-device-code=true # sm_86 depends on your GPU
 # -g -G
 #beta: c-1-6 -> sm_86
 #beta: c-1-2 -> sm_61
