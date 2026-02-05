@@ -231,7 +231,11 @@ To restart a simulation
 
 2.- In the input file: new_sim 1
 
-3.- Create a file 'input_particles.in' with the following columns:
+3.- If your simulation includes colloid particles, you must specify in the input file
+	the positions of the colloids at the last timestep of the previous simulation.
+	These can be obtained from the final colloids file.
+
+4.- From the final micro file, create a file 'input_particles.in' with the following columns:
 
         --- 2D --
 		
@@ -262,5 +266,7 @@ To restart a simulation
 	   6.- Vel z
 	   
 	   7.- mass
+	   
 	   8.- type of particle
-4.- Run the simulation
+	   
+5.- Run the simulation
