@@ -86,6 +86,13 @@ __global__ void kernel_cell_test(real* __restrict__ x,
 				 int*  __restrict__ particle_index,
 				 int*  __restrict__ cell_start,
 				 int*  __restrict__ cell_end);
+__global__ void kernel_cell_test2(real* __restrict__ x,
+				  real* __restrict__ y,
+				  real* __restrict__ z,
+				  int*  __restrict__ particle_cell,
+				  int*  __restrict__ particle_index,
+				  int*  __restrict__ cell_start,
+				  int*  __restrict__ cell_end);
 __global__ void kernel_cell_list(real* __restrict__ x,
 				 real* __restrict__ y,
 				 real* __restrict__ z,

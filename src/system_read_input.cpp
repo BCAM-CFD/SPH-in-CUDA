@@ -369,7 +369,7 @@ int class_system::read_input(int   N[3],
       printf("system_read_input error: the number of dimensions of the system is not compatible with the number of dimensions of ext_force\n");
       return 1;
     }
-  if (ext_force_type < 0 || ext_force_type > 2)  {
+  if (ext_force_type < 0 || ext_force_type > 3)  {
     printf("system_read_input error: the option ext_force_type = %d is not available.\n", ext_force_type);
     return 1;
   }

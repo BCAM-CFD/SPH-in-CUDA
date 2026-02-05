@@ -20,6 +20,8 @@ __global__ void kernel_print_cell_ranges(int* __restrict__ cell_start,
 	 cell_end[i]);
 }
 
+
+//----------- This is a test -----------
 __global__ void kernel_cell_test(real* __restrict__ x,
 				 real* __restrict__ y,
 				 real* __restrict__ z,
@@ -91,5 +93,22 @@ __global__ void kernel_cell_test(real* __restrict__ x,
 	      printf("%d %d %f %f %f %f\n", j, particle_cell[k], x[j], y[j], x[part], y[part]); 
 	    }
 	  }  
+
+}
+
+//----------- This is a test -----------
+__global__ void kernel_cell_test2(real* __restrict__ x,
+				  real* __restrict__ y,
+				  real* __restrict__ z,
+				  int*  __restrict__ particle_cell,
+				  int*  __restrict__ particle_index,
+				  int*  __restrict__ cell_start,
+				  int*  __restrict__ cell_end) {
+  int i = threadIdx.x + blockIdx.x * blockDim.x;
+  if (i >= 1) return;
+
+  for (int j = 0; j < N; ++j)
+    if (particle_cell[j] < 0)
+      printf("aaa %d\n", particle_cell[j]);
 
 }
