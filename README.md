@@ -21,8 +21,11 @@ mail: a.vazquez-quesada@fisfun.uned.es
 *******************************
 The compilation is done with the makefile file. 
 To compile, just write the following command in the command line:
+
 make
+
 If you want to clean everthing before compiling again, just do
+
 make clean
 
 *******************************
