@@ -45,7 +45,7 @@ __global__ void kernel_cell_list(real* __restrict__ x,
   if ( dim == 3 ) {
     cz = floor(z[i] / cell_size[2]);
     // cz is corrected in the case the particle is very close to the boundary and
-    // inaccuracy makes the calculation of cz wrong 
+    // inaccuracy makes the calculation of cz wrong
     if (cz == Ncells[2]) // cz should go from 0 to cell_size[2] - 1
       cz = cz - 1;
   }

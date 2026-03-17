@@ -43,7 +43,18 @@ int class_system::neighbours_search(dim3  numBlocks,
     printf("Error in kernel_cell_list: %s\n", cudaGetErrorString(cuda_err));
     return 1;
   }      
-  cudaDeviceSynchronize();  // We require the kernel to end to continue   
+  cudaDeviceSynchronize();  // We require the kernel to end to continue
+
+  // kernel_cell_test2<<<numBlocks, threadsPerBlock>>>(k_x, k_y, k_z,
+  // 						    k_particle_cell, k_particle_index,
+  // 						    k_cell_start, k_cell_end);
+  // cuda_err = cudaGetLastError();
+  // if (cuda_err != cudaSuccess) {
+  //   printf("Error in kernel_cell_list: %s\n", cudaGetErrorString(cuda_err));
+  //   return 1;
+  // }      
+  // cudaDeviceSynchronize();  // We require the kernel to end to continue
+  
 
   // particle_index and particle_cell are sorted according to particle_cell
   // If we have
@@ -54,16 +65,18 @@ int class_system::neighbours_search(dim3  numBlocks,
   //     particle_cell  0 0 1 1 2    
   thrust::device_ptr<int> d_cell(k_particle_cell);
   thrust::device_ptr<int> d_index(k_particle_index);
-  thrust::sort_by_key(d_cell, d_cell + this->N, d_index);
+  thrust::sort_by_key(d_cell, d_cell + this->N, d_index);  
 
   //-- Cell indices for beginning and end of cells are calculated --
-  kernel_cell_ranges<<<numBlocks, threadsPerBlock>>>(k_particle_cell, k_cell_start, k_cell_end);
+  kernel_cell_ranges<<<numBlocks, threadsPerBlock>>>(k_particle_cell,
+						     k_cell_start,
+						     k_cell_end);  
   cuda_err = cudaGetLastError();
   if (cuda_err != cudaSuccess) {
     printf("Error in kernel_cell_ranges: %s\n", cudaGetErrorString(cuda_err));
     return 1;
   }      
-  cudaDeviceSynchronize();  // We require the kernel to end to continue
+  cudaDeviceSynchronize();  // We require the kernel to end to continue  
 
   //------------- Colloidal particles ----------------------
   if (N_colloids >= 2) {
