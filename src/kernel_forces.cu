@@ -405,10 +405,10 @@ __global__ void kernel_forces(real* __restrict__ x,
 	      int j = particle_index[k]; // index of the neighbour particle
 	      
 	      if (i == j)
-		continue;
-	      
-	      if (type_i == type[j] && type_i != 0) // Both are not from fluid
-		continue;	  
+		    continue;
+
+	      if (type_i != 0 && type[j] != 0) // Both are not from fluid	     
+	      	continue;	  
 	      
 	      rij[0] = xi - x[j];
 	      rij[1] = yi - y[j];
