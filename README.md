@@ -4,6 +4,7 @@ SPH for Newtonian fluids with wall boundaries and suspensions of spherical parti
 Developed by Adolfo Vázquez-Quesada. 
 
 mail: a.vazquez-quesada@fisfun.uned.es
+
 --------------------------------------------------
 
 - Host variables and functions are declared in class_system.h.
