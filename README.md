@@ -42,13 +42,13 @@ To run the program, execute:
 
 # Input variables
 
-**N**       -> Number of particles in each direction ( in a rectangular grid)
+**N**       -> Number of particles in each direction (in a rectangular grid)
 
 **L**       -> Box length in each direction.
 
 **dim**     -> Number of dimensions
 
-**dt**      -> Time steps
+**dt**      -> Time step
 
 **Nsteps**  -> Number of steps
 
@@ -108,11 +108,11 @@ To run the program, execute:
           
 **coll_x**     -> Position of one colloid. Put as many coll_x as needed.
 
-**coll_repulsion_cuton** -> Cut on of the repulsion force between colloids.
+**coll_repulsion_cuton** -> Cut-on of the repulsion force between colloids.
 
 **F0_repulsion**         -> Magnitude of the repulsion force.
 
-**tau_repulsion**        -> Tau parameter of the repulsion force (related to the cut off radius of the repulsion force).
+**tau_repulsion**        -> Tau parameter of the repulsion force (related to the cut-off radius of the repulsion force).
 
 **new_sim** -> 
 
