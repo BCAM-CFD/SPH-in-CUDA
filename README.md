@@ -23,9 +23,22 @@ To compile, just write the following command in the command line:
 
 make
 
+The file SPH_program will be created, which is the executable.
+
 If you want to clean everthing before compiling again, just do
 
 make clean
+
+# Running a simulation
+
+You need to have the following files in the same directory (with the exact names shown below):
+
+- **SPH_program**: the executable.
+- **input**: a file containing the program inputs.
+
+To run the program, execute:
+
+./SPH_program
 
 # Input variables 
 
