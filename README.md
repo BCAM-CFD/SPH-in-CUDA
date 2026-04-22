@@ -40,6 +40,86 @@ To run the program, execute:
 
 ./SPH_program
 
+# Input variables
+
+**N**       -> Number of particles in each direction ( in a rectangular grid)
+
+**L**       -> Box length in each direction.
+
+**dim**     -> Number of dimensions
+
+**dt**      -> Time steps
+
+**Nsteps**  -> Number of steps
+
+**overlap** -> rcut / dx   (where dx = L/N)
+
+**rho**     -> fluid density
+
+**c**       -> Speed of sound
+
+**P0**      -> parameter of the equation of state
+
+**eta**     -> shear viscosity
+
+**zeta**    -> bulk viscosity
+
+**ext_force_type** -> Type of external force:
+
+           0: No external force
+           
+           1: Constant force
+           
+           2: sine force
+
+           3: force to simulate inverse Poiseuille flow
+           
+**ext_force** -> External force vector
+
+**freq_micro**    -> Frequency to write micro file.
+
+**freq_macro**    -> Frequency to write macro file.
+
+**freq_walls**    -> Frequency to write walls file.
+
+**freq_colloids** -> Frequency to write colloids file.
+
+**wall** -> walls are normal to the y-direction.
+
+        0: no walls
+        
+         1: walls
+        
+**Vwall_bottom** -> x-velocity of the bottom wall.
+
+**Vwall_top**    -> x-velocity of the top wall.
+
+**N_colloids** -> Number of colloidal particles.
+
+**coll_R**     -> Colloids radius.
+
+**coll_rho**   -> Colloids density.
+
+**coll_move**  -> 
+ 
+          0: colloids are moving.
+          
+          1: colloids are not moving.
+          
+**coll_x**     -> Position of one colloid. Put as many coll_x as needed.
+
+**coll_repulsion_cuton** -> Cut on of the repulsion force between colloids.
+
+**F0_repulsion**         -> Magnitude of the repulsion force.
+
+**tau_repulsion**        -> Tau parameter of the repulsion force (related to the cut off radius of the repulsion force).
+
+**new_sim** -> 
+
+       0: new simulation.
+       
+       1: existing simulation (the orientation of the magnetic field is not currently read in this option)
+
 # Input variables 
 
 N       -> Number of particles in each direction ( in a rectangular grid)
