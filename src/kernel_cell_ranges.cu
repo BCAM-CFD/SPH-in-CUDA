@@ -17,7 +17,7 @@ __global__ void kernel_cell_ranges(int* __restrict__ particle_cell,
 
     int current_cell = particle_cell[i];
     if (current_cell < 0 || current_cell > Ntotal_cells - 1) {
-      printf("kernel cell ranges error: a particle has not a proper cell assigned. Assigned cell = %d \n", current_cell);
+      printf("kernel cell ranges error: particle %d has not a proper cell assigned. Assigned cell = %d \n", i, current_cell);
       assert(0);
     }
 

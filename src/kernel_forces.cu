@@ -23,10 +23,10 @@ __global__ void kernel_forces(real* __restrict__ x,
 			      real* __restrict__ press,
 			      real* __restrict__ dens,
 			      real* __restrict__ mass,
-			      int* __restrict__ particle_index,
-			      int* __restrict__ cell_start,
-			      int* __restrict__ cell_end,
-			      int* __restrict__ type,
+			      int*  __restrict__ particle_index,
+			      int*  __restrict__ cell_start,
+			      int*  __restrict__ cell_end,
+			      int*  __restrict__ type,
 			      real* __restrict__ coll_x,
 			      real* __restrict__ coll_y,
 			      real* __restrict__ coll_z,
@@ -136,7 +136,6 @@ __global__ void kernel_forces(real* __restrict__ x,
 	    if (rijsq < rcutsq) {
 	      real eij[2];	    
 	      
-	      //-- Remember that, from a line above, type[i] = type[j] only if type[i] = 0 
 	      real dens_j;
 	      real press_j;
 	      real dist_i;
@@ -144,9 +143,11 @@ __global__ void kernel_forces(real* __restrict__ x,
 	      real vij[2];
 	      real beta;
 	      real dens_j_inv;
-	      real press_over_dens_square_j;	    
-	      //----------------------  i fluid - j fluid -------------------	    
-	      if (type_i == type[j]) { 
+	      real press_over_dens_square_j;
+	      // Cases of interactions between two particles, both not of the fluid
+	      // are avoided above
+	      //----------------------  i fluid - j fluid -------------------
+	      if (type_i == type[j] ) { 
 		dens_i                   = dens_i0;
 		press_i                  = press_i0;
 		dens_j                   = dens[j];
@@ -202,7 +203,7 @@ __global__ void kernel_forces(real* __restrict__ x,
 		    vij[1] = vyi;		      
 		  }
 		}
-		else { // ---------- j colloid (type[j] > 2) -----------
+		else { // ---------- i fluid - j colloid (type[j] > 2) -----------
 		  int coll_part = type[j] - 3;  // Colloidal particle id
 		  // Distance particle-colloid center is calculated
 		  real ri_coll[2];
@@ -253,7 +254,7 @@ __global__ void kernel_forces(real* __restrict__ x,
 		  }
 		}
 	      }
-	      //----------------------  i wall or colloid - j fluid -------------------	    
+	      //----------------------  i wall or colloid - j fluid -------------------	
 	      else { // type[j] == 0 (the case i & j are both not fluid was discarded before)
 		dens_j     = dens[j];
 		dens_i     = dens_j;
@@ -343,6 +344,7 @@ __global__ void kernel_forces(real* __restrict__ x,
 		      beta = beta_max;				  
 		    vij[0] = beta * (coll_vx[coll_part] + vrotx_surface - vx[j]);
 		    vij[1] = beta * (coll_vy[coll_part] + vroty_surface - vy[j]);
+		    
 		  }
 		}
 	      }
@@ -364,7 +366,7 @@ __global__ void kernel_forces(real* __restrict__ x,
 	      real aux1 = a * aux;
 	      real aux2 = b * aux * eij_dot_vij;
 	      fxi += aux1 * vij[0] + aux2 * eij[0]; 
-	      fyi += aux1 * vij[1] + aux2 * eij[1];
+	      fyi += aux1 * vij[1] + aux2 * eij[1];	      
 	    
 	    }
 	  
@@ -405,7 +407,7 @@ __global__ void kernel_forces(real* __restrict__ x,
 	      int j = particle_index[k]; // index of the neighbour particle
 	      
 	      if (i == j)
-		    continue;
+		continue;
 
 	      if (type_i != 0 && type[j] != 0) // Both are not from fluid	     
 	      	continue;	  

@@ -19,7 +19,7 @@ __global__ void kernel_cell_list(real* __restrict__ x,
 
   int i = threadIdx.x + blockIdx.x * blockDim.x;
   if (i >= N) return;
-  
+
   // We calculate in which cell is each particle
   int cx, cy, cz;
 
@@ -36,7 +36,7 @@ __global__ void kernel_cell_list(real* __restrict__ x,
     // cy is corrected in the case the particle is very close to the boundary and
     // inaccuracy makes the calculation of cy wrong
     if (cy == Ncells[1]) // cy should go from 0 to cell_size[1] - 1
-      cy = cy - 1;
+      cy = 0;
   }  
   else //-- With wall --
     cy = floor((y[i] + wall_width) / cell_size[1]);
@@ -61,3 +61,15 @@ __global__ void kernel_cell_list(real* __restrict__ x,
 
 }
 
+/*********************************/
+__global__ void kernel_scratch(real* __restrict__ x,
+			       real* __restrict__ y,
+			       real* __restrict__ z){
+
+  int i = threadIdx.x + blockIdx.x * blockDim.x;
+  if (i >= N) return;
+
+  if (i == 8352)
+    printf("aaa %f %f\n", x[i], y[i]);
+
+}

@@ -26,7 +26,7 @@ __global__ void kernel_calculate_macro_vars(real* __restrict__ mass,
   else //--- dim = 3 ---
     part_sum = 0.5 * mass[i] * (vx[i] * vx[i] + vy[i] * vy[i] + vz[i] * vz[i]);
 
-
+  //-- The sum is saved in kin_energy --  
 #if __CUDA_ARCH__ >= 600
   // modern GPUs -> native atomicAdd
   atomicAdd(kin_energy, part_sum);

@@ -281,4 +281,9 @@ __device__ void kernel_quaternion_product(real* c,
 					  real* d,
 					  real* result);
 
+__global__ void kernel_scratch(real* __restrict__ x,
+			       real* __restrict__ y,
+			       real* __restrict__ z);
+
 #endif // KERNEL_FUNCTIONS_H
+
