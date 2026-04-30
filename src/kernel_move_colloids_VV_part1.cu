@@ -42,7 +42,7 @@ __global__ void kernel_move_colloids_VV_part1(real* __restrict__ coll_x,
 
   int i = threadIdx.x + blockIdx.x * blockDim.x;
   if (i >= N_colloids) return;
-    // i is the identity of the colloid 
+    // i is the identity of the colloid
 
   //--- Some initialization ---
   real half_dt_over_mass = 0.5 * dt / coll_mass;
@@ -138,13 +138,14 @@ __global__ void kernel_move_colloids_VV_part1(real* __restrict__ coll_x,
     coll_quatz[i] = coll_quat_result[3];    
   }
   
-  // To define the computational particles
+  // To define computational particles
   int j_start    = colloids_start[i];
   int j_end;
   if (i < N_colloids - 1) 
     j_end = colloids_start[i + 1] - 1; 
   else
     j_end = Nlist_colloids - 1;
+  
   // The rearrange is done
   for (int j = j_start; j <= j_end; ++j) {
     int part = colloids_list[j];
@@ -181,6 +182,7 @@ __global__ void kernel_move_colloids_VV_part1(real* __restrict__ coll_x,
     y[part] = current_y_center_j + coll_y[i];
     if (dim == 3)
       z[part] = current_z_center_j + coll_z[i];
+    
     // Periodic boundary conditions
     if (x[part] < 0)
       x[part] = x[part] + L[0];
@@ -199,5 +201,7 @@ __global__ void kernel_move_colloids_VV_part1(real* __restrict__ coll_x,
 	z[part] = z[part] - L[2];          
     }
   }
+  
+
 
 }

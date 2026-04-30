@@ -229,7 +229,7 @@ int main() {
 			      &k_tx_colloid, &k_ty_colloid, &k_tz_colloid,
 			      &k_coll_cell, &k_coll_index,
 			      &k_coll_cell_start, &k_coll_cell_end);
-
+  
   //------------------------------------  
   //--- Configure blocks and threads ---
   //------------------------------------
@@ -249,7 +249,7 @@ int main() {
 
   //--------------------------------  
   //---- First Neighbour search ----
-  //--------------------------------    
+  //--------------------------------
   error = sys.neighbours_search(numBlocks, threadsPerBlock, k_x, k_y, k_z,
 				k_particle_cell, k_particle_index,
 				k_cell_start, k_cell_end,				  
@@ -258,7 +258,7 @@ int main() {
 				k_coll_cell_start, k_coll_cell_end);
   if (error != 0)
     return; // End of program  
-
+  
   //-----------------------------------------------------------  
   //--- Particle forces are calculated in the initial state ---
   //-----------------------------------------------------------    
@@ -293,9 +293,9 @@ int main() {
 		   k_fx_colloid, k_fy_colloid, k_fz_colloid,
 		   k_tx_colloid, k_ty_colloid, k_tz_colloid,
 		   k_kin_energy, freq_micro, freq_walls, freq_colloids,
-		   freq_macro, 0);   
-
-  //-------------------------------------------------------------------------------------- 
+		   freq_macro, 0);
+  
+  //--------------------------------------------------------------------------------------
   //----------------------------------- Main loop ----------------------------------------
   //--------------------------------------------------------------------------------------
   //
@@ -316,7 +316,7 @@ int main() {
 			       k_x_center, k_y_center, k_z_center,
 			       k_colloids_list, k_colloids_start, coll_move);
     if (error != 0)
-      return; // End of program
+      return; // End of program    
 
     //---- Neighbour search ----
     start_neighbours = clock();    
