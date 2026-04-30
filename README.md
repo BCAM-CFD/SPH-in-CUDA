@@ -17,7 +17,7 @@ mail: a.vazquez-quesada@fisfun.uned.es
 
 - main.cu is the main file of the code.
 
-# Compilation 
+## Compilation 
 The compilation is done with the makefile file. 
 To compile, just write the following command in the command line:
 
@@ -29,7 +29,7 @@ If you want to clean everthing before compiling again, just do
 
 make clean
 
-# Running a simulation
+## Running a simulation
 
 You need to have the following files in the same directory (with the exact names shown below):
 
@@ -40,7 +40,7 @@ To run the program, execute:
 
 ./SPH_program
 
-# Input variables
+## Input variables
 
 **N**       -> Number of particles in each direction (in a rectangular grid)
 
@@ -120,7 +120,7 @@ To run the program, execute:
        
        1: existing simulation (the orientation of the magnetic field is not currently read in this option)
 
-# Key of the output files
+## Key of the output files
 
 micro: 
 
@@ -256,7 +256,7 @@ macro:
 	   
        2 -> Total kinetic energy
 
-# To restart a simulation
+## To restart a simulation
 
 1.- Use the same input file of the initial simulation (or some variation of it).
 
