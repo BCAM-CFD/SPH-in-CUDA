@@ -52,7 +52,7 @@ int class_system::V_Verlet_step1(dim3 numBlocks,
 				 int   coll_move) {
 
   cudaError_t cuda_err;
-
+  
   //--- Fluid and walls particles are moved ---  
   kernel_move_sys_VV_part1<<<numBlocks, threadsPerBlock>>>(k_x, k_y, k_z, k_vx, k_vy, k_vz,
 							   k_fx, k_fy, k_fz, k_mass, k_type);
@@ -61,7 +61,7 @@ int class_system::V_Verlet_step1(dim3 numBlocks,
     printf("Error in kernel_move_sys: %s\n", cudaGetErrorString(cuda_err));
     return 1;
   }
-
+  
   //--- Particles of colloids are moved ---
   if (N_colloids > 0)
     if (coll_move == 0) {
@@ -94,6 +94,7 @@ int class_system::V_Verlet_step1(dim3 numBlocks,
 	return 1;
       }
     }
+  
   
   cudaDeviceSynchronize();  // We require the kernel to end to continue    
 

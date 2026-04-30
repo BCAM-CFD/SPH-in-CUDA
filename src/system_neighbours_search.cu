@@ -34,7 +34,7 @@ int class_system::neighbours_search(dim3  numBlocks,
   cudaError_t cuda_err;
 
   //------------- Computational particles ----------------------
-  
+
   //--- Neighbour cell list is built ---
   kernel_cell_list<<<numBlocks, threadsPerBlock>>>(k_x, k_y, k_z,
 						   k_particle_cell, k_particle_index);

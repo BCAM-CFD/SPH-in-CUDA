@@ -49,7 +49,7 @@ int class_system::read_input(int   N[3],
   
   FILE *file = fopen("input", "r");
   if (!file) {
-    perror("Error al abrir el archivo");
+    perror("Opening file error");
     return 0;
   }
 
@@ -210,7 +210,7 @@ int class_system::read_input(int   N[3],
     } else if (strcmp(var, "new_sim") == 0 && count >= 2) {
       new_sim              = val1;
       new_sim_read         = 0;            
-     }
+    }
     else if (strcmp(var, "coll_x") == 0){
       if (count >= 3 && N_coll > 0) {
 	if (coll_x_count >= N_coll) {
